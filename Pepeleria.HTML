@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Papelería Escolar</title>
+
+    <style>
+
+        body {
+
+            font-family: Arial, sans-serif;
+
+            background-color: #eaf3ff;
+
+            margin: 0;
+
+            padding: 0;
+
+        }
+
+        header {
+
+            background-color: #1565a8;
+
+            color: white;
+
+            text-align: center;
+
+            padding: 25px;
+
+        }
+
+        .contenedor {
+
+            background-color: white;
+
+            width: 85%;
+
+            max-width: 700px;
+
+            margin: 30px auto;
+
+            padding: 25px;
+
+            border-radius: 15px;
+
+            box-shadow: 0 4px 12px #0002;
+
+        }
+
+        h2 {
+
+            color: #1565a8;
+
+            text-align: center;
+
+        }
+
+        label {
+
+            display: block;
+
+            margin-top: 15px;
+
+            font-weight: bold;
+
+        }
+
+        input, select {
+
+            width: 100%;
+
+            padding: 12px;
+
+            margin-top: 7px;
+
+            border: 1px solid #aac8e5;
+
+            border-radius: 7px;
+
+            box-sizing: border-box;
+
+        }
+
+        .credencial {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 10px;
+
+            margin: 20px 0;
+
+            padding: 12px;
+
+            background-color: #eaf3ff;
+
+            border-radius: 8px;
+
+        }
+
+        .credencial input {
+
+            width: auto;
+
+        }
+
+        .credencial label {
+
+            margin: 0;
+
+        }
+
+        button {
+
+            width: 100%;
+
+            padding: 13px;
+
+            background-color: #1565a8;
+
+            color: white;
+
+            border: none;
+
+            border-radius: 8px;
+
+            font-size: 16px;
+
+            cursor: pointer;
+
+        }
+
+        button:hover {
+
+            background-color: #0c477c;
+
+        }
+
+        #resultado {
+
+            margin-top: 25px;
+
+            padding: 20px;
+
+            background-color: #eaf3ff;
+
+            border-radius: 10px;
+
+            text-align: center;
+
+            color: #104b7c;
+
+        }
+
+        .precios {
+
+            margin-top: 25px;
+
+            border-collapse: collapse;
+
+            width: 100%;
+
+        }
+
+        .precios th, .precios td {
+
+            border: 1px solid #aac8e5;
+
+            padding: 10px;
+
+            text-align: center;
+
+        }
+
+        .precios th {
+
+            background-color: #1565a8;
+
+            color: white;
+
+        }
+
+        footer {
+
+            text-align: center;
+
+            color: #456987;
+
+            padding: 20px;
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<header>
+
+    <h1>Papelería Escolar</h1>
+
+    <p>Servicio de copias y material escolar</p>
+
+</header>
+
+    <table class="precios">
+
+        <tr>
+
+            <th>Copias</th>
+
+            <th>Color</th>
+
+            <th>Blanco y negro</th>
+
+        </tr>
+
+        <tr>
+
+            <td>1 - 50</td>
+
+            <td>$1.50</td>
+
+            <td>$1.00</td>
+
+        </tr>
+
+        <tr>
+
+            <td>51 - 100</td>
+
+            <td>$1.30</td>
+
+            <td>$0.80</td>
+
+        </tr>
+
+        <tr>
+
+            <td>Más de 100</td>
+
+            <td>$1.00</td>
+
+            <td>$0.50</td>
+
+        </tr>
+        
+<div class="contenedor">
+
+    <h2>Calculadora de copias</h2>
+
+    <label for="cantidad">Número de copias:</label>
+
+    <input type="number" id="cantidad" min="1"
+
+        placeholder="Ingresa la cantidad">
+
+    <label for="tipo">Tipo de copia:</label>
+
+    <select id="tipo">
+
+        <option value="color">A color</option>
+
+        <option value="blanco">Blanco y negro</option>
+
+    </select>
+
+    <div class="credencial">
+
+        <input type="checkbox" id="credencial">
+
+        <label for="credencial">
+
+            Presento mi credencial de estudiante.
+
+            ¡Tengo 25% de descuento!
+
+        </label>
+
+    </div>
+
+    <button onclick="calcular()">Calcular cobro</button>
+
+    <div id="resultado">
+
+        <h3>Total a pagar</h3>
+
+        <h2>$0.00</h2>
+
+        <p>Ingresa tus datos para calcular.</p>
+
+    </div>
+
+    <h2>Lista de precios</h2>
+
+
+    </table>
+
+    <p style="text-align:center; color:#1565a8;">
+
+        Presentando tu credencial estudiantil obtienes
+
+        un descuento adicional del 25%.
+
+    </p>
+
+</div>
+
+<footer>
+
+    Papelería Escolar © 2026
+
+</footer>
+
+<script>
+
+function calcular() {
+
+    let cantidad = parseInt(
+
+        document.getElementById("cantidad").value
+
+    );
+
+    let tipo = document.getElementById("tipo").value;
+
+    let credencial =
+
+        document.getElementById("credencial").checked;
+
+    let resultado =
+
+        document.getElementById("resultado");
+
+    if (isNaN(cantidad) || cantidad < 1) {
+
+        resultado.innerHTML =
+
+            "<h3>Ingresa una cantidad válida de copias</h3>";
+
+        return;
+
+    }
+
+    let precio;
+
+    if (cantidad <= 50) {
+
+        precio = tipo === "color" ? 1.50 : 1.00;
+
+    } else if (cantidad <= 100) {
+
+        precio = tipo === "color" ? 1.30 : 0.80;
+
+    } else {
+
+        precio = tipo === "color" ? 1.00 : 0.50;
+
+    }
+
+    let subtotal = cantidad * precio;
+
+    let descuento = credencial ? subtotal * 0.25 : 0;
+
+    let total = subtotal - descuento;
+
+    resultado.innerHTML = `
+
+        <h3>Total a pagar</h3>
+
+        <h2>$${total.toFixed(2)} MXN</h2>
+
+        <p>Cantidad: ${cantidad} copias</p>
+
+        <p>Precio por copia: $${precio.toFixed(2)}</p>
+
+        <p>Subtotal: $${subtotal.toFixed(2)}</p>
+
+        <p>Descuento: $${descuento.toFixed(2)}</p>
+
+        <strong>
+
+            ${credencial
+
+            ? "Descuento estudiantil aplicado"
+
+            : "Sin descuento estudiantil"}
+
+        </strong>
+
+    `;
+
+}
+
+</script>
+
+</body>
+
+</html>
